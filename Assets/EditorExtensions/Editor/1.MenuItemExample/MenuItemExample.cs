@@ -19,8 +19,8 @@ namespace EditorExtensions
 
         [MenuItem("EditorExtensions/01.Menu/03.Open PersistentDataPath")]
         static void OpenPersistenDataPath()
-        {// 持久数据目录路径。
-            EditorUtility.RevealInFinder(Application.persistentDataPath);
+        {
+            EditorUtility.RevealInFinder(Application.persistentDataPath); // 打开自定义目录
         }
 
         [MenuItem("EditorExtensions/01.Menu/04.打开策划目录")]
@@ -28,9 +28,9 @@ namespace EditorExtensions
         {
             string ApplicationdataPath = Application.dataPath;
             ApplicationdataPath = ApplicationdataPath.Replace("Assets", "Library");
-            Debug.Log("Application.dataPath"+ Application.dataPath);
+            Debug.Log("Application.dataPath" + Application.dataPath);
             Debug.Log("Application.dataPath" + ApplicationdataPath);
-            EditorUtility.RevealInFinder(Application.dataPath.Replace("Assets","Library"));
+            EditorUtility.RevealInFinder(Application.dataPath.Replace("Assets", "Library"));
         }
 
         private static bool mOpenShortCut = false;
@@ -48,7 +48,7 @@ namespace EditorExtensions
         {
             EditorApplication.ExecuteMenuItem("EditorExtensions/01.Menu/01.Hello Editor"); //调用指定路径中的菜单项
         }
-        [MenuItem("EditorExtensions/01.Menu/06.Hello Editor _c",validate = true)] 
+        [MenuItem("EditorExtensions/01.Menu/06.Hello Editor _c", validate = true)]
         static bool HelloEditorWithShortCutValidate()
         {
             return mOpenShortCut;
@@ -58,7 +58,7 @@ namespace EditorExtensions
         {
             EditorApplication.ExecuteMenuItem("EditorExtensions/01.Menu/02.Open Bilibili"); //调用指定路径中的菜单项
         }
-        [MenuItem("EditorExtensions/01.Menu/07.Open Bilibili %e",validate =true)]  
+        [MenuItem("EditorExtensions/01.Menu/07.Open Bilibili %e", validate = true)]
         static bool OpenBilibiliWithShortCutValidate()
         {
             return mOpenShortCut;
@@ -68,7 +68,7 @@ namespace EditorExtensions
         {
             EditorApplication.ExecuteMenuItem("EditorExtensions/01.Menu/03.Open PersistentDataPath"); //调用指定路径中的菜单项
         }
-        [MenuItem("EditorExtensions/01.Menu/08.OpenPersistentDataPath %#t",validate =true)] 
+        [MenuItem("EditorExtensions/01.Menu/08.OpenPersistentDataPath %#t", validate = true)]
         static bool OpenPersistentDataPathWithShortCutValidate()
         {
             return mOpenShortCut;
@@ -78,10 +78,10 @@ namespace EditorExtensions
         {
             EditorApplication.ExecuteMenuItem("EditorExtensions/01.Menu/04.打开策划目录"); //调用指定路径中的菜单项
         }
-        [MenuItem("EditorExtensions/01.Menu/09.打开策划目录 &r",validate =true)] 
+        [MenuItem("EditorExtensions/01.Menu/09.打开策划目录 &r", validate = true)]
         static bool OpenDesignFolderWithShortCutValidate()
         {
-            return mOpenShortCut; 
+            return mOpenShortCut;
         }
 
         static MenuItemExample()
