@@ -19,22 +19,7 @@ namespace EditorFramework
 
         private void OnEnable()
         {
-            var editorWindowType = typeof(EditorWindow);
-            //var m_Parent = editorWindowType.GetField("m_Parent", BindingFlags.Instance | BindingFlags.NonPublic);
-
-            #region 注释
-
-            // AppDomain : 表示应用程序域
-            // AppDomain.CurrentDomain : 获取当前 Thread 的当前应用程序域
-            // AppDomain.GetAssemblies() : 获取已加载到此应用程序域的执行上下文中的程序集
-            // Type.IsSubclassOf(Type) : 确定当前 Type 是否派生自指定的 Type
-
-            #endregion 注释
-
-            mEditorWindowTypes = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(assembly => assembly.GetTypes())
-                .Where(type => type.IsSubclassOf(editorWindowType))
-                .Where(type => type.GetCustomAttribute<CustomEditorWindowAttribute>() != null);
+            mEditorWindowTypes = typeof(EditorWindow).GetSubTypesWithClassAttributeInAssemblies<CustomEditorWindowAttribute>();
         }
 
         private void OnGUI()
