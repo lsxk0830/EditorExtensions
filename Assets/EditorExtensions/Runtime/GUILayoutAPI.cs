@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace EditorExtensions
 {
-    public class GUILayoutAPI 
+    public class GUILayoutAPI
     {
         #region Basic
 
@@ -14,6 +14,7 @@ namespace EditorExtensions
         private int mToolbarIndex;
         private bool mToggleValue;
         private int mSelectedGridIndex;
+
         public void Draw()
         {
             GUILayout.Label("Label: Hello IMGUI");
@@ -49,7 +50,7 @@ namespace EditorExtensions
                     {
                         GUILayout.Label("Button");
 
-                        //GUILayout.FlexibleSpace();  
+                        //GUILayout.FlexibleSpace();
 
                         if (GUILayout.Button("Button", GUILayout.MinWidth(100), GUILayout.MinHeight(100), GUILayout.MaxWidth(150), GUILayout.MaxHeight(150)))
                         {
@@ -84,7 +85,7 @@ namespace EditorExtensions
 
                     GUILayout.Label("VerticalSlider");
                     mSliderValue = GUILayout.VerticalSlider(mSliderValue, 0, 1);
-                     
+
                     GUILayout.BeginArea(new Rect(0, 0, 100, 100)); // 在固定的屏幕区域开始GUI控件的GUILayout块。
                     {
                         GUI.Label(new Rect(0, 0, 20, 20), "1");
@@ -93,7 +94,6 @@ namespace EditorExtensions
 
                     GUILayout.Window(1, new Rect(0, 0, 100, 100), id =>
                     {
-
                     }, "2");
 
                     mToolbarIndex = GUILayout.Toolbar(mToolbarIndex, new[] { "1", "2", "3", "4", "5" });
@@ -107,9 +107,8 @@ namespace EditorExtensions
                 GUILayout.EndVertical();
             }
             GUILayout.EndScrollView();
-
         }
 
-        #endregion
+        #endregion Basic
     }
 }
