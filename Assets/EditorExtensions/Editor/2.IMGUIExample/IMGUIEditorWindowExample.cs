@@ -7,18 +7,19 @@ namespace EditorExtensions
     public class IMGUIEditorWindowExample : EditorWindow
     {
         [MenuItem("EditorExtensions/02.IMGUI/01.IMGUIEditorWindowExample")]
-        static void OpenGUILayoutExample()
+        private static void OpenGUILayoutExample()
         {
             GetWindow<IMGUIEditorWindowExample>().Show();
         }
 
-        enum APIMode
+        private enum APIMode
         {
             GUILayout,
-            GUI
+            GUI,
+            EditorGUI
         }
 
-        enum PageId
+        private enum PageId
         {
             Basic,
             Enabled,
@@ -33,10 +34,12 @@ namespace EditorExtensions
 
         private GUILayoutAPI mGUILayoutAPI = new GUILayoutAPI();
         private GUIAPI mGUIAPI = new GUIAPI();
+        private EditorGUIAPI mEditorGUIAPI = new EditorGUIAPI();
+
         private void OnGUI()
         {
             mCurrentAPIMode = (APIMode)GUILayout.Toolbar((int)mCurrentAPIMode, Enum.GetNames(typeof(APIMode)));
-            mCurrentPageId = (PageId)GUILayout.Toolbar((int)mCurrentPageId,Enum.GetNames(typeof(PageId)));
+            mCurrentPageId = (PageId)GUILayout.Toolbar((int)mCurrentPageId, Enum.GetNames(typeof(PageId)));
 
             if (mCurrentPageId == PageId.Basic)
             {
@@ -50,7 +53,7 @@ namespace EditorExtensions
             {
                 Rotate();
             }
-            else if(mCurrentPageId == PageId.Scale)
+            else if (mCurrentPageId == PageId.Scale)
             {
                 Scale();
             }
@@ -64,9 +67,9 @@ namespace EditorExtensions
 
         private bool mEnableInteractive = true;
 
-        void Enabled()
+        private void Enabled()
         {
-            mEnableInteractive = GUILayout.Toggle(mEnableInteractive,"是否可交互");
+            mEnableInteractive = GUILayout.Toggle(mEnableInteractive, "是否可交互");
             // 将该值设置为 false 可禁用所有 GUI 交互
             if (GUI.enabled != mEnableInteractive)
             {
@@ -75,56 +78,59 @@ namespace EditorExtensions
             Basic();
         }
 
-        #endregion
+        #endregion Enable
 
         #region Rotate
 
         private bool OpenRotateEffect = false;
 
-        void Rotate()
+        private void Rotate()
         {
             OpenRotateEffect = GUILayout.Toggle(OpenRotateEffect, "旋转效果");
             if (OpenRotateEffect)
             {// 帮助函数来围绕一个点旋转GUI
-                GUIUtility.RotateAroundPivot(45,Vector2.one*200);
+                GUIUtility.RotateAroundPivot(45, Vector2.one * 200);
             }
             Basic();
         }
 
-        #endregion
+        #endregion Rotate
 
-        #region Scale 
+        #region Scale
 
         private bool OpenScaleEffect = false;
-        void Scale()
+
+        private void Scale()
         {
             OpenScaleEffect = GUILayout.Toggle(OpenScaleEffect, "缩放效果");
 
             if (OpenScaleEffect) // 帮助函数来围绕一个点缩放GUI。
-                GUIUtility.ScaleAroundPivot(Vector2.one*0.5f,Vector2.one*200);
+                GUIUtility.ScaleAroundPivot(Vector2.one * 0.5f, Vector2.one * 200);
 
             Basic();
         }
 
-        #endregion
+        #endregion Scale
 
         #region Basic
 
-        void Basic()
+        private void Basic()
         {
             if (mCurrentAPIMode == APIMode.GUILayout)
                 mGUILayoutAPI.Draw();
-            else if(mCurrentAPIMode == APIMode.GUI)
+            else if (mCurrentAPIMode == APIMode.GUI)
                 mGUIAPI.Draw();
+            else if (mCurrentAPIMode == APIMode.EditorGUI)
+                mEditorGUIAPI.Draw();
         }
 
-        #endregion
+        #endregion Basic
 
         #region Color
 
-        private bool mOpenColorEffect= false;
+        private bool mOpenColorEffect = false;
 
-        void Color()
+        private void Color()
         {
             mOpenColorEffect = GUILayout.Toggle(mOpenColorEffect, "变换颜色");
 
@@ -134,7 +140,6 @@ namespace EditorExtensions
             Basic();
         }
 
-        #endregion
+        #endregion Color
     }
 }
-
