@@ -16,7 +16,8 @@ namespace EditorExtensions
         {
             GUILayout,
             GUI,
-            EditorGUI
+            EditorGUI,
+            EditorGUILayout
         }
 
         private enum PageId
@@ -35,6 +36,7 @@ namespace EditorExtensions
         private GUILayoutAPI mGUILayoutAPI = new GUILayoutAPI();
         private GUIAPI mGUIAPI = new GUIAPI();
         private EditorGUIAPI mEditorGUIAPI = new EditorGUIAPI();
+        private EditorGUILayoutAPI mEditorGUILayoutAPI = new EditorGUILayoutAPI();
 
         private void OnGUI()
         {
@@ -122,6 +124,8 @@ namespace EditorExtensions
                 mGUIAPI.Draw();
             else if (mCurrentAPIMode == APIMode.EditorGUI)
                 mEditorGUIAPI.Draw();
+            else
+                mEditorGUILayoutAPI.Draw();
         }
 
         #endregion Basic
