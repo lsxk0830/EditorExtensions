@@ -17,8 +17,9 @@ namespace EditorFramework
             // AppDomain.GetAssemblies() : 获取已加载到此应用程序域的执行上下文中的程序集
             // Type.IsSubclassOf(Type) : 确定当前 Type 是否派生自指定的 Type
             return AppDomain.CurrentDomain.GetAssemblies()
-               .SelectMany(assembly => assembly.GetTypes())
-               .Where(type => type.IsSubclassOf(self));
+                .Where(assembly => assembly.FullName.StartsWith("Assembly"))
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(type => type.IsSubclassOf(self));
         }
 
         public static IEnumerable<Type> GetSubTypesWithClassAttributeInAssemblies<TClassAttribute>(this Type self)
