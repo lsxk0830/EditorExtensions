@@ -1,4 +1,3 @@
-
 using UnityEditor;
 using UnityEngine;
 
@@ -37,6 +36,7 @@ namespace EditorExtensions
         private double mDoubleFieldvalue;
 
         private Gradient mGradient = new Gradient();
+
         private enum EnumFlagsFieldValue
         {
             A = 1,
@@ -47,11 +47,12 @@ namespace EditorExtensions
         private EnumFlagsFieldValue mEnumFlagsFieldValue;
 
         private bool mFoldOutValue = true;
+
         public void Draw()
         {
             mDisabledGroupValue = EditorGUILayout.Toggle("Disable Group", mDisabledGroupValue);
 
-            mFoldOutValue = EditorGUI.Foldout(new Rect(210, 60, 300, 20),mFoldOutValue,"折叠");
+            mFoldOutValue = EditorGUI.Foldout(new Rect(210, 60, 300, 20), mFoldOutValue, "折叠");
             if (mFoldOutValue)
             {
                 EditorGUI.BeginDisabledGroup(mDisabledGroupValue);
@@ -79,7 +80,7 @@ namespace EditorExtensions
                     mBoundsFieldValue = EditorGUI.BoundsField(mBoundsFieldRect, mBoundsFieldValue);
                     mBoundsIntFieldValue = EditorGUI.BoundsIntField(mBoundsIntFieldRect, mBoundsIntFieldValue);
                     mCurveFieldValue = EditorGUI.CurveField(mCurveFieldRect, mCurveFieldValue);
-                    mDoubleFieldvalue = EditorGUI.DelayedDoubleField(mDelayedDoubleFieldRect, mDoubleFieldvalue);
+                    //mDoubleFieldvalue = EditorGUI.DelayedDoubleField(mDelayedDoubleFieldRect, mDoubleFieldvalue);
                     mDoubleFieldvalue = EditorGUI.DoubleField(mDoubleFieldRect, mDoubleFieldvalue);
                     mEnumFlagsFieldValue =
                         (EnumFlagsFieldValue)EditorGUI.EnumFlagsField(mEnumFlagsFieldRect, mEnumFlagsFieldValue);
