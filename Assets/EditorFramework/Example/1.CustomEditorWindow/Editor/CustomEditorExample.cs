@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace EditorFramework
 {
-    [CustomEditorWindow]
+    [CustomEditorWindow(1)]
     public class CustomEditorExample : EditorWindow
     {
         private void OnGUI()
         {
-            GUILayout.Label("这是一个自定义窗口");
+            GUILayout.Label("杩欐槸涓�涓嚜瀹氫箟绐楀彛");
         }
     }
 }
