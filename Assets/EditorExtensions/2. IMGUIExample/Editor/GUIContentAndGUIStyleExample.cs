@@ -7,13 +7,12 @@ namespace EditorExtensions
     public class GUIContentAndGUIStyleExample : EditorWindow
     {
         [MenuItem("EditorExtensions/02.IMGUI/02.GUIContentAndGUIStyle")]
-        static void Open()
+        private static void Open()
         {
-            GetWindow<GUIContentAndGUIStyleExample>()
-                .Show();
+            GetWindow<GUIContentAndGUIStyleExample>().Show();
         }
-        
-        enum Mode
+
+        private enum Mode
         {
             GUIContent,
             GUIStyle
@@ -33,10 +32,10 @@ namespace EditorExtensions
             retStyle.focused.textColor = Color.red;
             retStyle.active.textColor = Color.cyan;
             retStyle.normal.background = Texture2D.whiteTexture;
-            
+
             return retStyle;
         });
-        
+
         private Lazy<GUIStyle> mButtonStyle = new Lazy<GUIStyle>(() =>
         {
             var retStyle = new GUIStyle(GUI.skin.button);
@@ -47,11 +46,9 @@ namespace EditorExtensions
             retStyle.focused.textColor = Color.red;
             retStyle.active.textColor = Color.cyan;
             retStyle.normal.background = Texture2D.whiteTexture;
-            
+
             return retStyle;
         });
-
-        
 
         private void OnGUI()
         {
@@ -61,15 +58,15 @@ namespace EditorExtensions
             {
                 GUILayout.Label("把鼠标放在我身上");
                 GUILayout.Label(new GUIContent("把鼠标放在我身上"));
-                GUILayout.Label(new GUIContent("把鼠标放在我身上","已经放好了 Yeah"));
-                GUILayout.Label(new GUIContent("把鼠标放在我身上",Texture2D.whiteTexture));
-                GUILayout.Label(new GUIContent("把鼠标放在我身上",Texture2D.whiteTexture,"这个也放好了 Yeah"));
+                GUILayout.Label(new GUIContent("把鼠标放在我身上", "已经放好了 Yeah"));
+                GUILayout.Label(new GUIContent("把鼠标放在我身上", Texture2D.whiteTexture));
+                GUILayout.Label(new GUIContent("把鼠标放在我身上", Texture2D.whiteTexture, "这个也放好了 Yeah"));
             }
             else
             {
                 GUILayout.Label("Style of default");
-                GUILayout.Label("Style of box",mBoxStyle);
-                GUILayout.Label("Style font",mFontStyle.Value);
+                GUILayout.Label("Style of box", mBoxStyle);
+                GUILayout.Label("Style font", mFontStyle.Value);
                 if (GUILayout.Button("Button font", mButtonStyle.Value))
                 {
                     Debug.Log("Print Button");
