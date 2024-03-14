@@ -13,10 +13,9 @@ namespace EditorFramework
             Folder = folder;
             DefaultName = defaultName;
         }
-        
+
         protected string mPath;
-        
-        
+
         public string Path => mPath;
         public string Title;
         public string Folder;
@@ -26,11 +25,11 @@ namespace EditorFramework
         {
             mPath = path;
         }
-        
+
         public override void OnGUI(Rect position)
         {
             base.OnGUI(position);
-            
+
             var rects = position.VerticalSplit(position.width - 30);
             var leftRect = rects[0];
             var rightRect = rects[1];
@@ -39,8 +38,8 @@ namespace EditorFramework
             GUI.enabled = false;
             EditorGUI.TextField(leftRect, mPath); // 左边的 rect width - 30
             GUI.enabled = currentGUIEnabled;
-            
-            if (GUI.Button(rightRect,GUIContents.Folder)) // 右边的 rect 30
+
+            if (GUI.Button(rightRect, GUIContents.Folder)) // 右边的 rect 30
             {
                 var path = EditorUtility.OpenFolderPanel(Title, Folder, DefaultName);
 
@@ -60,7 +59,6 @@ namespace EditorFramework
 
         protected override void OnDispose()
         {
-
         }
     }
 }
