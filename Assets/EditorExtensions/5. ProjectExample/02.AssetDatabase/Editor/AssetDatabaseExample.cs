@@ -67,11 +67,12 @@ namespace EditorExtensions
         [MenuItem(MENU_PATH + "/DeleteMaterial")]
         private static void Delete()
         {
-            AssetDatabase.MoveAssetToTrash(NewMaterialPath);
+            //AssetDatabase.MoveAssetToTrash(NewMaterialPath); // 回收站
 
-            AssetDatabase.DeleteAsset(NewMaterialPath);
+            bool delete = AssetDatabase.DeleteAsset(NewMaterialPath);
 
             AssetDatabase.Refresh();
+            Debug.Log("delete:" + delete);
         }
 
         [MenuItem(MENU_PATH + "/GetMaterialGUID", validate = true)]
